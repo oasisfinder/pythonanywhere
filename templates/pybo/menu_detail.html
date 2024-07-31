@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
+<div class="container mt-4">
+    <h1 class="border-bottom py-2">{{ menu.name }}</h1>
+    <div class="card mt-3">
+        <div class="card-body">
+            <p class="card-text"><strong>종류:</strong> {{ menu.type }}</p>
+            <p class="card-text"><strong>거리:</strong> {{ menu.distance }}</p>
+            <p class="card-text"><strong>가격:</strong> {{ menu.price|intcomma }}원</p>
+            <p class="card-text"><strong> <a href = "{% url 'pybo:index' %}" class="btn btn-primary"> 리스트로 </strong></a></p>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

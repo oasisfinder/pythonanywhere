@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+{% block content %}
+
+{% load humanize %}
+
+{% load static %}
+
+<h1>  <p class="card-text"><strong> <a href = "{% url 'pybo:random' %}" class="btn btn-primary"> 메뉴 추천 </strong></a></p>
+</h1>
+<div class="container my-3">
+    <table class="table">
+        <thead>
+        <tr class="table-dark">
+            <th>번호</th>
+            <th>메뉴</th>
+            <th>분류</th>
+            <th>거리</th>
+            <th>가격대</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in menu_list %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>
+                  <a href="{% url 'pybo:detail' item.id %}">{{ item.name }}</a>
+            </td>
+            <td>{{ item.type }}</td>
+            <td>{{ item.distance }}</td>
+            <td>{{ item.price|intcomma}}</td>
+
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+<!--    <h1>Menu</h1>-->
+<!--    <ul>-->
+<!--        {% for item in menu_list %}-->
+<!--            <li>{{ item.name }} - {{ item.type }} - {{ item.distance }} - {{ item.price }}</li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+
+{% endblock %}

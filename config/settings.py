@@ -44,7 +44,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    '8196-14-39-214-18.ngrok-free.app']
+    '8196-14-39-214-18.ngrok-free.app',
+    'oasisfinder.pythonanywhere.com']
 # Application definition
 
 INSTALLED_APPS = [

@@ -5,10 +5,15 @@
 {% load humanize %}
 
 {% load static %}
-
-<h1>  <p class="card-text"><strong> <a href = "{% url 'pybo:random' %}" class="btn btn-primary"> 메뉴 추천 </strong></a></p>
-</h1>
 <div class="container my-3">
+
+<head>
+<title>copyright 2024 Nuri all rights revserved</title>
+</head>
+
+
+<h1>  <p class="card-text"><strong> <a href = "{% url 'pybo:random' %}" class="btn btn-primary"> 랜덤 메뉴 추천 </strong></a></p>
+</h1>
     <table class="table">
         <thead>
         <tr class="table-dark">
@@ -38,11 +43,6 @@
 </div>
 
 
-<!--    <h1>Menu</h1>-->
-<!--    <ul>-->
-<!--        {% for item in menu_list %}-->
-<!--            <li>{{ item.name }} - {{ item.type }} - {{ item.distance }} - {{ item.price }}</li>-->
-<!--        {% endfor %}-->
-<!--    </ul>-->
+
 
 {% endblock %}

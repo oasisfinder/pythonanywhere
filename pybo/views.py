@@ -3,18 +3,23 @@
 
 from django.shortcuts import render, get_object_or_404
 from .models import Menu
+from django.db.models import Q
 
 
 def index(request):
-    menu_list = Menu.objects.all()
-    # for menu in menu_list:
-    #     print(menu.name, menu.type, menu.distance, menu.price)
+    kw = request.GET.get('kw', '')  # 검색어
 
-    context = {'menu_list': menu_list}
+    if kw:
+        menu_list = Menu.objects.filter(
+            Q(name__icontains=kw) |  # 이름에 검색어가 포함된 항목
+            Q(type__icontains=kw) |  # 타입에 검색어가 포함된
+            Q(distance__icontains=kw)
+        ).distinct()  # 중복 제거
+    else:
+        menu_list = Menu.objects.all()  # 검색어가 없으면 모든 항목 가져오기
 
-
+    context = {'menu_list': menu_list, 'kw': kw}
     return render(request, 'pybo/menu_list.html', context)
-
 
 def detail(request,menu_id):
     menu = Menu.objects.get(id=menu_id)

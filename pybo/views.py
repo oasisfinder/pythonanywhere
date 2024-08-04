@@ -4,6 +4,21 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Menu
 from django.db.models import Q
+from .form import MenuSearchForm
+
+
+def random(request):
+    import random
+    form = MenuSearchForm(request.GET)
+    random_menu = None
+    if form.is_valid():
+        type = form.cleaned_data.get('type')
+        menus = Menu.objects.all()
+        if type:
+            menus = menus.filter(type=type)
+        if menus.exists():
+            random_menu = random.choice(menus)
+    return render(request, 'pybo/random.html', {'form': form, 'random_menu': random_menu})
 
 
 def index(request):
@@ -27,17 +42,3 @@ def detail(request,menu_id):
     context = {'menu': menu}
 
     return render(request, 'pybo/menu_detail.html', context)
-
-def random(request):
-    import random
-    queryset = Menu.objects.all()
-    count = queryset.count()  # 데이터베이스에서 개수를 직접 가져옴
-    if count > 0:
-       random_no = random.randrange(1,count)
-       menu = Menu.objects.get(id=random_no)
-       context = {'menu': menu}
-
-    else :
-        context = {}
-
-    return render(request, 'pybo/random.html', context)

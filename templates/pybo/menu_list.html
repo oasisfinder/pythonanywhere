@@ -29,7 +29,9 @@
                 <th>메뉴</th>
                 <th>분류</th>
                 <th>거리</th>
+                <th>위치</th>
                 <th>가격대</th>
+                <th>품목</th>
             </tr>
         </thead>
         <tbody>
@@ -39,7 +41,10 @@
                 <td><a href="{% url 'pybo:detail' item.id %}">{{ item.name }}</a></td>
                 <td>{{ item.type }}</td>
                 <td>{{ item.distance }}</td>
+                <td>{{ item.location }}</td>
                 <td>{{ item.price|intcomma }}</td>
+                <td>{{ item.menu_detail }}</td>
+
             </tr>
             {% endfor %}
         </tbody>

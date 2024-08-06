@@ -28,7 +28,9 @@ def index(request):
         menu_list = Menu.objects.filter(
             Q(name__icontains=kw) |  # 이름에 검색어가 포함된 항목
             Q(type__icontains=kw) |  # 타입에 검색어가 포함된
-            Q(distance__icontains=kw)
+            Q(distance__icontains=kw)|
+            Q(menu_detail__icontains=kw)|
+            Q(location__icontains=kw)
         ).distinct()  # 중복 제거
     else:
         menu_list = Menu.objects.all()  # 검색어가 없으면 모든 항목 가져오기

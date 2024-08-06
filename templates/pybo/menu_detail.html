@@ -1,11 +1,21 @@
-
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5BC99X3Z');</script>
+<!-- End Google Tag Manager -->
 {% extends 'base.html' %}
 {% load humanize %}
 {% load static %}
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
-
+<body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5BC99X3Z"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 <div class="container mt-4">
     <h1 class="border-bottom py-2">{{ menu.name }}</h1>
     <div class="card mt-3">
@@ -18,5 +28,5 @@
         </div>
     </div>
 </div>
-
+</body>
 {% endblock %}

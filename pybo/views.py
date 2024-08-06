@@ -11,11 +11,16 @@ def random(request):
     import random
     form = MenuSearchForm(request.GET)
     random_menu = None
+
     if form.is_valid():
         type = form.cleaned_data.get('type')
+        location = form.cleaned_data.get('location')
+
         menus = Menu.objects.all()
         if type:
             menus = menus.filter(type=type)
+        if location:
+            menus = menus.filter(location=location)
         if menus.exists():
             random_menu = random.choice(menus)
     return render(request, 'pybo/random.html', {'form': form, 'random_menu': random_menu})

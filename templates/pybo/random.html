@@ -4,25 +4,60 @@
 
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+<style>
+    .form-container {
+        display: flex;
+        justify-content: start;
+        margin-bottom: 20px;
+    }
+    .form-group {
+        margin-right: 50px;
+    }
+    .form-group > label {
+        font-weight: bold;
+        margin-bottom: 10px;
+        display: block;
+    }
+    .radio-group {
+        display: flex;
+        flex-direction: column;
+    }
+    .radio-group label {
+        margin-bottom: 5px;
+    }
+</style>
 
 <div class="container mt-4">
     <h1 class="border-bottom py-2">오늘의 점메추</h1>
 
-            <form method="get" class="mb-3">
-                {{ form.as_p }}
-                <button type="submit" class="btn btn-primary">랜덤 메뉴 추천</button>
-            </form>
+    <form method="get" class="mb-3">
+        <div class="form-container">
+            {% for field in form %}
+            <div class="form-group">
+                <label>{{ field.label }}</label>
+                <div class="radio-group">
+                    {% for radio in field %}
+                        <label>
+                            {{ radio.tag }}
+                            {{ radio.choice_label }}
+                        </label>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="btn btn-primary">랜덤 메뉴 추천</button>
+    </form>
+
     <div class="card mt-3">
         <div class="card-body">
-
             {% if random_menu %}
                 <h2 class="card-title">{{ random_menu.name }}</h2>
                 <p class="card-text"><strong>종류:</strong> {{ random_menu.type }}</p>
                 <p class="card-text"><strong>거리:</strong> {{ random_menu.distance }}</p>
                 <p class="card-text"><strong>위치:</strong> {{ random_menu.location }}</p>
                 <p class="card-text"><strong>가격:</strong> {{ random_menu.price|intcomma }}원</p>
-                <p class="card-text">{{ menu.menu_detail }}</p>
-
+                <p class="card-text">{{ random_menu.menu_detail }}</p>
             {% else %}
                 <p class="card-text">메뉴를 선택해주세요.</p>
             {% endif %}

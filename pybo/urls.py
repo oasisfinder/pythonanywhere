@@ -12,5 +12,6 @@ urlpatterns = [
     path('', views.index, name='index'),
     path('<int:menu_id>/', views.detail, name = 'detail'),
     path('random/', views.random, name='random'),
-    path('memo/', views.memo_view, name='memo')]
+    path('memo/', views.memo_view, name='memo'),
+    path('gia/', views.gia_view, name='gia')]
 

@@ -56,3 +56,7 @@ def memo_view(request):  # 함수 이름을 memo에서 memo_view로 변경
     memos = Memo.objects.all()  # Memo.objects.all()을 사용하여 모든 Memo 객체 가져오기
     context = {'memos': memos}
     return render(request, 'pybo/memo.html', context)
+
+
+def gia_view(request):
+    return render(request, 'pybo/gia.html')

@@ -5,17 +5,19 @@
 {% load static %}
 
 <div class="container my-3">
-    <head>
-        <title>copyright 2024 Nuri all rights reserved</title>
-    </head>
 
     <div class="d-flex justify-content-start">
            <p class="card-text me-2">
-               <a href="{% url 'pybo:random' %}" class="btn btn-primary">랜덤 메뉴 추천</a>
+               <a href="{% url 'pybo:random' %}" class="btn btn-primary">랜덤메뉴추천</a>
             </p>
+
+            <p class="card-text me-2">
+            <a href="{% url 'pybo:gia' %}" class="btn btn-primary">지하식당메뉴</a>
+            </p>
+
             <p class="card-text">
-            <a href="{% url 'pybo:memo' %}" class="btn btn-primary">업데이트 계획</a>
-          </p>
+            <a href="{% url 'pybo:memo' %}" class="btn btn-primary">지금은개발중</a>
+            </p>
         </div>
 
 

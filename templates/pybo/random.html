@@ -63,9 +63,18 @@
             {% endif %}
         </div>
     </div>
+    <p>
+        <div class="d-flex justify-content-start">
+           <p class="card-text me-2">
+               <a href="{% url 'pybo:index' %}" class="btn btn-secondary">리스트로</a>
+            </p>
 
-    <div class="mt-3">
-        <a href="{% url 'pybo:index' %}" class="btn btn-secondary">리스트로</a>
-    </div>
+            <p class="card-text me-2">
+            <a href="{% url 'pybo:gia' %}" class="btn btn-secondary">그냥지하에서먹자</a>
+            </p>
+            </p>
+        </div>
+
+
 </div>
 {% endblock %}

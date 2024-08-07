@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
+<div class="container mt-4">
+    <h1 class="border-bottom py-2">지-하 (지하식당이라는 뜻)</h1>
+    <div class="card mt-3">
+        <div class="card-body">
+
+            <img src = "https://chatbot.poongsan.co.kr/static/cm-images/19cf4d12ec684fba84fa40fc21376e27.jpg">
+
+        </div>
+    </div>
+
+    <p>
+    <div class="d-flex justify-content-start">
+        <p class="card-text me-2">
+            <a href="{% url 'pybo:index' %}" class="btn btn-secondary">리스트로</a>
+        </p>
+        <p class="card-text">
+            <a href="{% url 'pybo:random' %}" class="btn btn-secondary">그냥 나가서 먹자</a>
+        </p>
+    </div>
+
+
+
+
+{% endblock %}

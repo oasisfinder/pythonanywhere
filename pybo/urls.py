@@ -11,5 +11,6 @@ app_name = 'pybo'
 urlpatterns = [
     path('', views.index, name='index'),
     path('<int:menu_id>/', views.detail, name = 'detail'),
-    path('random/', views.random, name='random')]
+    path('random/', views.random, name='random'),
+    path('memo/', views.memo_view, name='memo')]
 

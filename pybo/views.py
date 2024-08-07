@@ -2,7 +2,7 @@
 # Create your views here.
 
 from django.shortcuts import render, get_object_or_404
-from .models import Menu
+from .models import Menu, Memo
 from django.db.models import Q
 from .form import MenuSearchForm
 
@@ -49,3 +49,10 @@ def detail(request,menu_id):
     context = {'menu': menu}
 
     return render(request, 'pybo/menu_detail.html', context)
+
+
+
+def memo_view(request):  # 함수 이름을 memo에서 memo_view로 변경
+    memos = Memo.objects.all()  # Memo.objects.all()을 사용하여 모든 Memo 객체 가져오기
+    context = {'memos': memos}
+    return render(request, 'pybo/memo.html', context)

@@ -1,4 +1,7 @@
 from django.db import models
+from django.utils.translation import gettext_lazy as _
+import datetime
+from django.utils import timezone
 
 # Create your models here.
 
@@ -27,4 +30,18 @@ class Menu(models.Model):
     def __str__(self):
         return self.name
 
+class Memo(models.Model):
+    class Status(models.TextChoices):
+        PENDING = '대기중', _('대기중')
+        IN_PROGRESS = '진행중', _('진행중')
+        COMPLETED = '완료', _('완료')
 
+    title = models.CharField(max_length=100)
+    status = models.CharField(
+        max_length=10,
+        choices=Status.choices,
+        default=Status.PENDING,
+    )
+
+    def __str__(self):
+        return self.title

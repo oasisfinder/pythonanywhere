@@ -9,9 +9,19 @@
         <title>copyright 2024 Nuri all rights reserved</title>
     </head>
 
+    <div class="d-flex justify-content-start">
+           <p class="card-text me-2">
+               <a href="{% url 'pybo:random' %}" class="btn btn-primary">랜덤 메뉴 추천</a>
+            </p>
+            <p class="card-text">
+            <a href="{% url 'pybo:memo' %}" class="btn btn-primary">업데이트 계획</a>
+          </p>
+        </div>
+
 
     <div class="row my-3">
-        <p class="card-text"><strong><a href="{% url 'pybo:random' %}" class="btn btn-primary">랜덤 메뉴 추천</a></strong></p>
+
+
         <form action="{% url 'pybo:index' %}" method="get">
             <div class="input-group">
                 <input type="text" name="kw" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
@@ -25,7 +35,6 @@
     <table class="table">
         <thead>
             <tr class="table-dark">
-                <th>번호</th>
                 <th>메뉴</th>
                 <th>분류</th>
                 <th>거리</th>
@@ -37,7 +46,6 @@
         <tbody>
             {% for item in menu_list %}
             <tr>
-                <td>{{ forloop.counter }}</td>
                 <td><a href="{% url 'pybo:detail' item.id %}">{{ item.name }}</a></td>
                 <td>{{ item.type }}</td>
                 <td>{{ item.distance }}</td>

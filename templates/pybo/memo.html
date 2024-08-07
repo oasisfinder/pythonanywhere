@@ -1,0 +1,41 @@
+
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css' %}">
+
+<div class="container mt-4">
+    <h1 class="border-bottom py-2">업데이트 계획</h1>
+    <div class="card mt-3">
+        <div class="card-body">
+
+            <table class="table">
+        <thead>
+            <tr class="table-dark">
+                <th>순번</th>
+                <th>내용</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+         {% for item in memos %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.status}}</td>
+            </tr>
+        </tbody>
+        {% endfor %}
+
+    </table>
+
+
+        </div>
+    </div>
+    <p>
+    <p class="card-text"><strong> <a href = "{% url 'pybo:index' %}" class="btn btn-secondary"> 리스트로 </strong></a></p>
+
+</div>
+{% endblock %}

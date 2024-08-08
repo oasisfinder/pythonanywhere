@@ -18,7 +18,6 @@ sys.path.insert(0, str(BASE_DIR))
 sys.path.insert(0, str(BASE_DIR / 'mysite'))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
-
 # Django 설정
 django.setup()
 
@@ -110,3 +109,10 @@ def update_image_url():
     else:
         print("이미지 URL을 찾을 수 없습니다.")
 
+def main():
+    print("Notion 이미지 URL 업데이터 시작")
+    update_image_url()
+    print("Notion 이미지 URL 업데이터 종료")
+
+if __name__ == "__main__":
+    main()

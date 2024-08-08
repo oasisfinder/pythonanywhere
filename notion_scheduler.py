@@ -110,7 +110,3 @@ def update_image_url():
     else:
         print("이미지 URL을 찾을 수 없습니다.")
 
-# 메인 함수
-
-if __name__ == "__main__":
-    main()

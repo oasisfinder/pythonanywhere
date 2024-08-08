@@ -7,26 +7,21 @@
 <div class="container my-3">
 
     <div class="d-flex justify-content-start">
-           <p class="card-text me-2">
-               <a href="{% url 'pybo:random' %}" class="btn btn-primary">랜덤메뉴추천</a>
-            </p>
-
-            <p class="card-text me-2">
+        <p class="card-text me-2">
+            <a href="{% url 'pybo:random' %}" class="btn btn-primary">랜덤메뉴추천</a>
+        </p>
+        <p class="card-text me-2">
             <a href="{% url 'pybo:gia' %}" class="btn btn-primary">지하식당메뉴</a>
-            </p>
-
-            <p class="card-text">
+        </p>
+        <p class="card-text">
             <a href="{% url 'pybo:memo' %}" class="btn btn-primary">지금은개발중</a>
-            </p>
-        </div>
-
+        </p>
+    </div>
 
     <div class="row my-3">
-
-
         <form action="{% url 'pybo:index' %}" method="get">
             <div class="input-group">
-                <input type="text" name="kw" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
+                <input type="text" name="kw" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}" placeholder="식당 이름, 위치, 메뉴를 넣고 검색해보세요!">
                 <div class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">찾기</button>
                 </div>
@@ -37,12 +32,12 @@
     <table class="table">
         <thead>
             <tr class="table-dark">
-                <th>메뉴</th>
+                <th>식당</th>
                 <th>분류</th>
                 <th>거리</th>
                 <th>위치</th>
                 <th>가격대</th>
-                <th>품목</th>
+                <th>메뉴</th>
             </tr>
         </thead>
         <tbody>
@@ -54,16 +49,11 @@
                 <td>{{ item.location }}</td>
                 <td>{{ item.price|intcomma }}</td>
                 <td>{{ item.menu_detail }}</td>
-
             </tr>
             {% endfor %}
         </tbody>
     </table>
 </div>
-
-<form id="searchForm" method="get" action="{% url 'pybo:index' %}">
-    <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
-</form>
 
 {% endblock %}
 

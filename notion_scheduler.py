@@ -1,31 +1,31 @@
 import os
 import sys
-import django
-import json
-import requests
-from datetime import datetime
 from pathlib import Path
 
-# 프로젝트 루트 디렉토리 설정
-BASE_DIR = Path(__file__).resolve().parent.parent
+# 현재 스크립트 파일의 디렉토리 경로
+SCRIPT_DIR = Path(__file__).resolve().parent
 
-print(f"BASE_DIR: {BASE_DIR}")
-print(f"BASE_DIR (absolute path): {BASE_DIR.absolute()}")
+print(f"Script directory: {SCRIPT_DIR}")
 print(f"Current working directory: {os.getcwd()}")
 
 # Django 프로젝트 경로 추가
-sys.path.insert(0, str(BASE_DIR))
-sys.path.insert(0, str(BASE_DIR / 'mysite'))
+sys.path.insert(0, str(SCRIPT_DIR.parent))
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
 
 # Django 설정
+import django
 django.setup()
 
+# 여기서 Django 모델을 임포트
 from pybo.models import ImageURL
+
+import json
+import requests
+from datetime import datetime
 
 # 설정 파일 로드
 def load_config():
-    config_path = 'secret_key.json'
+    config_path = SCRIPT_DIR / 'secret_key.json'
     try:
         with open(config_path, 'r') as config_file:
             return json.load(config_file)
@@ -33,7 +33,7 @@ def load_config():
         print(f"secret_key.json 파일을 찾을 수 없습니다. 경로: {config_path}")
         return None
     except json.JSONDecodeError:
-        print("secret_key.json 파일의 형식이 올바르지 않습니다.")
+        print(f"secret_key.json 파일의 형식이 올바르지 않습니다. 경로: {config_path}")
         return None
 
 # Notion API 설정

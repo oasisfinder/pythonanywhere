@@ -45,3 +45,10 @@ class Memo(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class ImageURL(models.Model):
+    url = models.URLField(max_length=500)
+    updated_at = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.url

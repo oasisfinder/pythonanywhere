@@ -1,8 +1,8 @@
-
 # Create your views here.
 
 from django.shortcuts import render, get_object_or_404
-from .models import Menu, Memo
+from .models import Menu, Memo, ImageURL
+
 from django.db.models import Q
 from .form import MenuSearchForm
 
@@ -59,4 +59,5 @@ def memo_view(request):  # 함수 이름을 memo에서 memo_view로 변경
 
 
 def gia_view(request):
-    return render(request, 'pybo/gia.html')
+    image_url = ImageURL.objects.first()
+    return render(request, 'pybo/gia.html',{'image_url': image_url})

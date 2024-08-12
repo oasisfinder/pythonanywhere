@@ -1,10 +1,17 @@
 # Create your views here.
-
-from django.shortcuts import render, get_object_or_404
+import urllib.parse
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Menu, Memo, ImageURL
 
 from django.db.models import Q
+
 from .form import MenuSearchForm
+
+def naver_search(request, menu_id):
+    menu = get_object_or_404(Menu, id=menu_id)
+    encoded_query = urllib.parse.quote(f"{menu.name} {menu.location}")
+    naver_search_url = f"https://search.naver.com/search.naver?query={encoded_query}"
+    return redirect(naver_search_url)
 
 
 def random(request):
@@ -23,7 +30,15 @@ def random(request):
             menus = menus.filter(location=location)
         if menus.exists():
             random_menu = random.choice(menus)
-    return render(request, 'pybo/random.html', {'form': form, 'random_menu': random_menu})
+            encoded_query = urllib.parse.quote(f"{random_menu.name} {random_menu.location}")
+            naver_search_url = f"https://search.naver.com/search.naver?query={encoded_query}"
+    context = {
+        'form': form,
+        'random_menu': random_menu,
+        'naver_search_url': naver_search_url
+    }
+
+    return render(request, 'pybo/random.html', context)
 
 
 def index(request):
@@ -46,7 +61,9 @@ def index(request):
 def detail(request,menu_id):
     menu = Menu.objects.get(id=menu_id)
     # menu_list = Menu.objects.all()
-    context = {'menu': menu}
+
+    naver_search_url = f"https://search.naver.com/search.naver?query={menu.location} {menu.name}"
+    context = {'menu': menu, 'naver_search_url': naver_search_url}
 
     return render(request, 'pybo/menu_detail.html', context)
 

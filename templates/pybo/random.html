@@ -58,6 +58,11 @@
                 <p class="card-text"><strong>위치:</strong> {{ random_menu.location }}</p>
                 <p class="card-text"><strong>가격:</strong> {{ random_menu.price|intcomma }}원</p>
                 <p class="card-text">{{ random_menu.menu_detail }}</p>
+
+                {% if naver_search_url %}
+                <a href="{{ naver_search_url }}" class="btn btn-success" target="_blank">네이버에서 식당 검색</a>
+                {% endif %}
+
             {% else %}
                 <p class="card-text">메뉴를 선택해주세요.</p>
             {% endif %}

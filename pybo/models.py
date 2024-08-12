@@ -20,13 +20,17 @@ class Menu(models.Model):
         ('풍산빌딩 지하', '풍산빌딩 지하'),
         ('서대문', '서대문'),]
 
+    CONFIRMED_CHOICES = [
+        ('Y', '승인됨'),
+        ('N', '미승인'),
+    ]
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=50, choices = TYPE_CHOICES)
     distance = models.CharField(max_length=50)
     location = models.CharField(max_length=50, choices = location_CHOICES)
     price = models.IntegerField(null=True, blank=True)
     menu_detail = models.CharField(max_length=100, null=True, blank=True)
-
+    confirmed = models.CharField(max_length=2, default = "N")
     def __str__(self):
         return self.name
 

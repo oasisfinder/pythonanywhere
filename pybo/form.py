@@ -20,3 +20,17 @@ class MenuSearchForm(forms.Form):
 
     type = forms.ChoiceField(choices=TYPE_CHOICES, required=False, widget=forms.RadioSelect, label='음식 종류')
     location = forms.ChoiceField(choices=location_CHOICES, required=False, widget=forms.RadioSelect, label='지역')
+
+class MenuCreateForm(forms.ModelForm):
+    class Meta:
+        model = Menu  # 사용할 모델
+        fields = ['name', 'type','distance','location','price','menu_detail']
+        labels = {
+            'name': '식당이름',
+            'type': '종류',
+            'distance': '거리',
+            'location': '위치',
+            'price': '가격',
+            'menu_detail': '메뉴들',
+        }
+        # QuestionForm에서 사용할 Question 모델의 속성
